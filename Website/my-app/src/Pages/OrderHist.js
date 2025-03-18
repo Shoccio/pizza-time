@@ -1,62 +1,71 @@
-import pizza from '../pizza.png'
-import '../App.css';
+import React, { useState, useEffect } from "react";
+import { db, collection, getDocs } from "../firebase"; 
+import "./order-history.css";
 
-function SearchBox(){
-  return(
-    <input
-            type="text"
-            placeholder="Search..."
-            style={{
-                padding: '8px',
-                width: '280px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                marginLeft: '5vmin',
-                marginBottom: '2vmin'
-            }}
-        />
-  )
-}
+const OrderHistory = () => {
+    const [search, setSearch] = useState("");
+    const [orders, setOrders] = useState([]);  
 
-function Table(){
-  const rows = 20
-  return(
-    <table>
-      <thead>
-        <tr>
-          <th>Order ID</th>
-          <th>Status</th>
-          <th>Date</th>
-          <th>Payment Method</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Array.from({length: rows}).map((_, index) => (
-        <tr key = {index}>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>          
-        ))}
 
-      </tbody>
-    </table>
-  )
-}
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, "pizza_sales"));
+                const ordersData = [];
+                querySnapshot.forEach((doc) => {
+                    ordersData.push({ id: doc.id, ...doc.data() });  // Add doc ID and data to ordersData array
+                });
+                setOrders(ordersData);  
+            } catch (error) {
+                console.error("Error fetching orders: ", error);
+            }
+        };
+        
+        fetchOrders(); 
+    }, []);  // Empty dependency array ensures it runs only once when component mounts
 
-function OrderHist() {
-  return (
-    <div>
-      <header className="App-header">
-        <p style={{margin: 0}}>
-          <b>Order History</b> <img src={pizza} className='App-logo'></img>
-        </p>
-      </header>
-      <SearchBox/>
-      <Table/>
-    </div>
-  );
-}
+    return (
+        <div className="order-history">
+            {/* Search Bar */}
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="search-bar"
+                />
+            </div>
 
-export default OrderHist;
+            {/* Table */}
+            <div className="table-container">
+                <table className="order-hist-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Payment Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {orders
+                            .filter(order => 
+                                order.pizza_type.toLowerCase().includes(search.toLowerCase())
+                            )  
+                            .map((order) => (
+                            <tr key={order.id}>
+                                <td>{order.id}</td>
+                                <td>{order.status || "Pending"}</td> {/* Add status if available */}
+                                <td>{order.timestamp ? order.timestamp.toDate().toLocaleString() : "N/A"}</td> {/* Format timestamp */}
+                                <td>{order.paymentMethod || "Cash"}</td> {/* Add payment method if available */}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+export default OrderHistory;
