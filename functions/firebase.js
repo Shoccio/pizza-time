@@ -3,7 +3,7 @@ import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from 'fire
 
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: process."AIzaSyCsV81XXaoR4GVtjrCvqnj7HN0DSEcCMNc",
   authDomain: "pizza-sales-tracker.firebaseapp.com",
   projectId: "pizza-sales-tracker",
   storageBucket: "pizza-sales-tracker.appspot.com",
