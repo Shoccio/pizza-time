@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "./Component/Header";
 import Dashboard from "./Pages/Dashboard";
 import OrderHist from "./Pages/OrderHist";
+import OrderLog from "./Pages/OrderLog";
 
 function App()
 {
@@ -18,6 +19,7 @@ function App()
       <div className="content">
         {currentPage == 'Dashboard' && <Dashboard />}
         {currentPage == 'OrderHist' && <OrderHist />}
+        {currentPage == 'OrderLog' && <OrderLog />}
       </div>
     </div>
   );

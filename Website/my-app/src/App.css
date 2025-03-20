@@ -1,9 +1,35 @@
-body{
-  background-color: #f7efdc;
+header {
+  height: 10vmin;
+  background-color: rgb(38, 175, 0);
+  display: flex;            /* Use flexbox for layout */
+  align-items: center;      /* Vertically align items to the center */
+  justify-content: space-between;  /* Spread out h1 and nav */
+  padding: 0 10px;          /* Optional: add some padding to give spacing */
 }
+
+h1 {
+  margin-left: 4vmin;
+}
+
+button{
+  height: 5vmin;
+  width: 20vmin;
+  margin-right: 3vmin;
+  border-radius: 5px;
+  font-size: medium;
+}
+
+.dbButton{
+  background-color: rgb(102, 195, 65);
+  color: white;
+}
+
 
 .App-logo {
   height: 8vmin;
+  margin-left: 3vmin;
+  height: 50px;
+  width: auto;
   vertical-align: middle;
   pointer-events: none;
 }
@@ -40,7 +66,7 @@ table{
 }
 
 thead{
-  background-color: #c4bdae;
+  background-color: #6abe39;
 }
 
 tbody{

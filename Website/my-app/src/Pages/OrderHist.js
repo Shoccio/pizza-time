@@ -1,4 +1,4 @@
-import pizza from '../pizza.png'
+import pizza from '../Resource/pizza.png'
 import '../App.css';
 
 function SearchBox(){
@@ -12,7 +12,8 @@ function SearchBox(){
                 border: '1px solid #ccc',
                 borderRadius: '4px',
                 marginLeft: '5vmin',
-                marginBottom: '2vmin'
+                marginBottom: '2vmin',
+                marginTop: '2vmin'
             }}
         />
   )
@@ -48,11 +49,6 @@ function Table(){
 function OrderHist() {
   return (
     <div>
-      <header className="App-header">
-        <p style={{margin: 0}}>
-          <b>Order History</b> <img src={pizza} className='App-logo'></img>
-        </p>
-      </header>
       <SearchBox/>
       <Table/>
     </div>
