@@ -1,59 +1,34 @@
-body{
-  background-color: #f7efdc;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+
+.App {
+  text-align: center;
 }
 
 .App-logo {
-  height: 8vmin;
-  vertical-align: middle;
+  height: 40vmin;
   pointer-events: none;
-}
-
-.Seach-bar{
-  padding-left: 5vmin;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 2s linear;
+    animation: App-logo-spin infinite 20s linear;
   }
 }
 
 .App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  font-size: calc(30px + 2vmin);
-  color: black;
-  margin-left: 5vmin;
-  height: 75px;
-  vertical-align: top;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
   color: #61dafb;
-}
-
-table{
-  width: 95%;
-  margin-left: 5vmin;
-  border-collapse: collapse;
-}
-
-thead{
-  background-color: #c4bdae;
-}
-
-tbody{
-  background-color: white;
-}
-
-td{
-  height: 25px;
-  border: 1px solid black;
-}
-
-th{
-  border: 1px solid black;
 }
 
 @keyframes App-logo-spin {
@@ -64,3 +39,51 @@ th{
     transform: rotate(360deg);
   }
 }
+
+.header-container {
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4CAF50;
+  padding: 10px 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  background-color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-btn:hover {
+  background-color: #ddd;
+}
+
+.nav-btn.active {
+  background-color: #eee;
+}
+
+.pizza-icon {
+  width: 50px;
+  height: auto;
+  transform: scaleX(-1);
+  position: relative;
+  margin-right: 1200px;
+}
+
