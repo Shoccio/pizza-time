@@ -3,13 +3,13 @@ import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from 'fire
 
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: "pizza-sales-tracker.firebaseapp.com",
-  projectId: "pizza-sales-tracker",
-  storageBucket: "pizza-sales-tracker.appspot.com",
-  messagingSenderId: "95670003992",
-  appId: "1:95670003992:web:e8e6d6806c7ba999fd166d",
-  measurementId: "G-2D49Z3Z06M"
+  apiKey: "AIzaSyDNPEKXKVleCJlst3eErmS12-WUK3xEGyQ",
+  authDomain: "pizza-tracker-7a851.firebaseapp.com",
+  projectId: "pizza-tracker-7a851",
+  storageBucket: "pizza-tracker-7a851.firebasestorage.app",
+  messagingSenderId: "118026448010",
+  appId: "1:118026448010:web:a5db0044563fff223f9173",
+  measurementId: "G-YC5P9X60HH"
 };
 
 
