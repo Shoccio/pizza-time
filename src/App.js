@@ -18,8 +18,10 @@ function Navbar() {
   return (
     <div className="header-container">
       <nav className="navbar">
-        <h1 className="nav-title">{pageTitles[location.pathname]}</h1>
-        <img src="/pizza-icon.png" alt="Pizza Icon" className="pizza-icon" />
+        <div className="navlogo">
+          <h1>{pageTitles[location.pathname]}</h1>
+          <img src="/pizza-icon.png" alt="Pizza Icon" className="App-logo" />
+        </div>
         <div className="nav-links">
           <Link to="/dashboard" className={`nav-btn ${location.pathname === "/dashboard" ? "active" : ""}`}>Dashboard</Link>
           <Link to="/order-log" className={`nav-btn ${location.pathname === "/order-log" ? "active" : ""}`}>Order Log</Link>

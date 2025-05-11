@@ -37,7 +37,7 @@ function Dashboard() {
       <iframe
         title="Outer Iframe"
         width="1000"
-        height="700"
+        height="600"
         srcDoc={innerIframeHTML}
         style={{ border: "1px solid #ccc" }}
         sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
