@@ -4,27 +4,24 @@ import "./order-history.css";
 
 const OrderHistory = () => {
     const [search, setSearch] = useState("");
-    const [orders, setOrders] = useState([]);
+    const [orders, setOrders] = useState({});
 
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const ordersRef = ref(db, "pizza_sales");  // reference to "pizza_sales" node
+                const ordersRef = ref(db, "pizza_orders");  // reference to "pizza_sales" node
                 const snapshot = await get(ordersRef);
 
                 if (snapshot.exists()) {
                     const data = snapshot.val();
-                    const ordersArray = Object.entries(data).map(([id, order]) => ({
-                        id,
-                        ...order,
-                    }));
-                    setOrders(ordersArray);
+                    setOrders(data);
                 } else {
                     console.log("No data available");
                 }
             } catch (error) {
                 console.error("Error fetching orders: ", error);
             }
+
         };
 
         fetchOrders();
@@ -55,21 +52,17 @@ const OrderHistory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders
-                            .filter(order =>
-                                order.pizza_type &&
-                                order.pizza_type.toLowerCase().includes(search.toLowerCase())
-                            )
-                            .map((order) => (
-                                <tr key={order.id}>
-                                    <td>{order.id}</td>
-                                    <td>{order.status || "Pending"}</td>
+                        {Object.entries(orders)
+                            .map(([key, value], index) => (
+                                <tr key={key}>
+                                    <td>{key}</td>
+                                    <td>{value.status || "Pending"}</td>
                                     <td>
-                                        {order.timestamp
-                                            ? new Date(order.timestamp).toLocaleString()
+                                        {key
+                                            ? new Date(value.timestamp).toLocaleString()
                                             : "N/A"}
                                     </td>
-                                    <td>{order.paymentMethod || "Cash"}</td>
+                                    <td>{value.payMentOption || "Cash"}</td>
                                 </tr>
                             ))}
                     </tbody>
