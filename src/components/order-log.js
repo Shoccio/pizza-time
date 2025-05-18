@@ -109,7 +109,7 @@ const OrderLog = () => {
           <tr key={rowIndex}>
             {row.map(([key, value]) => (
               <td key={key}>
-                <img src="/pizza-icon.png" alt="Pizza Icon" className="pizza-item" /> 
+                <img src="/kiko.png" alt="Pizza Icon" className="pizza-item" /> 
                 <br />
                 {key}
                 <br />

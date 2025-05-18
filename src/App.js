@@ -20,7 +20,7 @@ function Navbar() {
       <nav className="navbar">
         <div className="navlogo">
           <h1>{pageTitles[location.pathname]}</h1>
-          <img src="/pizza-icon.png" alt="Pizza Icon" className="App-logo" />
+          <img src="/kiko.png" alt="Pizza Icon" className="App-logo" />
         </div>
         <div className="nav-links">
           <Link to="/dashboard" className={`nav-btn ${location.pathname === "/dashboard" ? "active" : ""}`}>Dashboard</Link>

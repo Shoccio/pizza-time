@@ -1,6 +1,7 @@
 .order-history {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 20px;
     margin-top: 10px; 
@@ -70,3 +71,26 @@
 }
 
 
+.navigation{
+    display: flex;
+    margin-top: 20px;
+    justify-content:  center;
+    align-items: center;
+}
+
+.arrows {
+  background-color: white;
+  border: none;
+  padding: 8px 16px;
+  border: 1px solid black;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.arrows:hover {
+  background-color: #ddd;
+}

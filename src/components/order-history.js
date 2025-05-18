@@ -4,7 +4,10 @@ import "./order-history.css";
 
 const OrderHistory = () => {
     const [search, setSearch] = useState("");
-    const [orders, setOrders] = useState({});
+    const [orders, setOrders] = useState([]);
+    const [orderss, setOrderss] = useState([]);
+    const [pageIndex, setPageIndex] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -14,10 +17,34 @@ const OrderHistory = () => {
 
                 if (snapshot.exists()) {
                     const data = snapshot.val();
-                    setOrders(data);
+                    const dat = Object.entries(data);
+                    setOrders(dat);
+
+                    var page = [];
+                    const table = [];
+                    var pageCnt = 0;
+                    dat.forEach((order, index) =>{
+                        page.push(order)
+                        if((index + 1) % 9 == 0){
+                            table.push(page);
+                            page = new Array();
+                            pageCnt += 1;
+                        }
+                        
+                    });
+
+                    if(page.length > 0){
+                        table.push(page);
+                        pageCnt += 1;
+                    }
+
+                    setOrderss(table);
+                    setTotalPages(pageCnt);
                 } else {
                     console.log("No data available");
                 }
+
+                
             } catch (error) {
                 console.error("Error fetching orders: ", error);
             }
@@ -26,6 +53,16 @@ const OrderHistory = () => {
 
         fetchOrders();
     }, []);
+
+    const nextPage = () => {
+        if(pageIndex + 1 < totalPages)
+            setPageIndex(pageIndex + 1);
+    }
+
+    const prevPage = () => {
+        if(pageIndex > 0)
+            setPageIndex(pageIndex - 1);
+    }
 
     return (
         <div className="order-history">
@@ -52,21 +89,24 @@ const OrderHistory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.entries(orders)
-                            .map(([key, value], index) => (
-                                <tr key={key}>
-                                    <td>{key}</td>
-                                    <td>{value.status || "Pending"}</td>
-                                    <td>
-                                        {key
-                                            ? new Date(value.timestamp).toLocaleString()
-                                            : "N/A"}
-                                    </td>
-                                    <td>{value.payMentOption || "Cash"}</td>
-                                </tr>
-                            ))}
+                    {orderss[pageIndex]?.map(([key, value], index) => (                            
+                        <tr key={key}>    
+                        <td>{key}</td>
+                        <td>Pending</td>
+                        <td>
+                            {new Date(value.timestamp).toLocaleString()}
+                        </td>
+                        <td>{value.payMentOption || "Cash"}</td>
+                        </tr>
+                            
+                    ))}
                     </tbody>
                 </table>
+                <div className="navigation">
+                    <button type="button" class="arrows" onClick={() => prevPage()}>&lt;</button>
+                    {pageIndex + 1}
+                    <button type="button" class="arrows" onClick={() => nextPage()}>&gt;</button>
+                </div>
             </div>
         </div>
     );
